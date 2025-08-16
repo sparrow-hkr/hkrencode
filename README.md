@@ -39,3 +39,5 @@ Encode every character
 ```bash
 hkrencode --urls="/home/index.html" --fullhex
 ```
+
+Thanks to ❤️ copilot
