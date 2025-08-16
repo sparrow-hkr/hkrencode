@@ -50,8 +50,20 @@ func readLinesFromFile(path string) ([]string, error) {
 	return lines, scanner.Err()
 }
 
+func showHelp() {
+	fmt.Println("hkrencode - A simple URL encoder tool")
+	fmt.Println()
+	fmt.Println("Usage:")
+	fmt.Println("  hkrencode [options] <string>")
+	fmt.Println()
+	fmt.Println("Options:")
+	fmt.Println("  --help       Show this help message")
+	fmt.Println("  --decode     Decode the input string instead of encoding")
+}
+
 func main() {
 	// Flags
+	help := flag.Bool("help", false, "Show help message")
 	urlsFlag := flag.String("urls", "", "Comma-separated list of URLs to process")
 	urlFileFlag := flag.String("urlfile", "", "Path to file containing list of URLs (one per line)")
 	depthFlag := flag.Int("depth", 1, "Number of times to encode the URL")
@@ -61,7 +73,12 @@ func main() {
 	fullHexFlag := flag.Bool("fullhex", false, "Encode every character into hexadecimal ASCII")
 
 	flag.Parse()
+	// Show help if requested
 
+	if *help {
+		// showHelp()
+		os.Exit(0)
+	}
 	var inputs []string
 
 	// Read from stdin
